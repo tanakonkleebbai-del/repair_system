@@ -603,7 +603,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 </form>
 
                 <!-- Demo Quick Login Helper -->
-                <div class="demo-section">
+                <!-- <div class="demo-section">
                     <div class="demo-title">
                         <span><i class="fas fa-key me-1 text-teal"></i> บัญชีทดสอบระบบ</span>
                         <span class="text-muted" style="font-size:0.72rem; font-weight:400;">คลิกเพื่อกรอกอัตโนมัติ</span>
@@ -623,7 +623,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         </button>
                     </div>
                 </div>
-            </div>
+            </div> -->
 
             <!-- Footer Copyright -->
             <div class="copyright-text">
