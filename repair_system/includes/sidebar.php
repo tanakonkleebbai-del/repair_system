@@ -9,7 +9,7 @@ $current_dir = basename(dirname($_SERVER['PHP_SELF']));
 <aside class="sidebar">
     <div class="sidebar-header">
         <a href="<?= base_url('index.php') ?>" class="sidebar-logo">
-            <img src="<?= base_url('assets/images/logo.png') ?>" alt="Logo" class="sidebar-logo-img">
+            <img src="<?= base_url('assets/images/logo.png') ?>" alt="Logo" class="sidebar-logo-img" width="38" height="38" style="width: 38px; height: 38px; object-fit: cover;">
             <div class="sidebar-logo-text">
                 <span class="sidebar-logo-title">อบต.หนองแวง</span>
                 <span class="sidebar-logo-sub">ระบบแจ้งซ่อมออนไลน์</span>
