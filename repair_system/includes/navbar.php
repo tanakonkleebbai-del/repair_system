@@ -1,22 +1,22 @@
 <?php
 /**
- * Navbar Component
+ * Navbar Component (Mobile Responsive Topbar)
  */
 $page_title = $page_title ?? 'แดชบอร์ด';
 $user_name = $_SESSION['user_fullname'] ?? 'ผู้ใช้งาน';
 $user_role = $_SESSION['user_role'] ?? 'user';
 ?>
 <header class="top-navbar">
-    <div class="d-flex align-items-center gap-3">
-        <button type="button" class="btn btn-light d-lg-none" id="sidebarToggle">
+    <div class="d-flex align-items-center gap-2 gap-sm-3 min-w-0">
+        <button type="button" class="navbar-toggle-btn d-lg-none" id="sidebarToggle" aria-label="เปิดเมนูหลัก">
             <i class="fas fa-bars"></i>
         </button>
-        <h4 class="mb-0 fs-5 fw-bold text-dark"><?= htmlspecialchars($page_title) ?></h4>
+        <h4 class="top-navbar-brand-title mb-0" title="<?= htmlspecialchars($page_title) ?>"><?= htmlspecialchars($page_title) ?></h4>
     </div>
 
-    <div class="d-flex align-items-center gap-3">
+    <div class="d-flex align-items-center gap-2 gap-sm-3 flex-shrink-0">
         <div class="d-none d-md-block text-end">
-            <div class="fw-semibold text-dark"><?= htmlspecialchars($user_name) ?></div>
+            <div class="fw-semibold text-dark small mb-0"><?= htmlspecialchars($user_name) ?></div>
             <div><?= role_badge($user_role) ?></div>
         </div>
         
@@ -27,9 +27,10 @@ $user_role = $_SESSION['user_role'] ?? 'user';
                 </div>
             </button>
             <ul class="dropdown-menu dropdown-menu-end shadow-sm border-0 mt-2">
-                <li class="px-3 py-2 border-bottom">
+                <li class="px-3 py-2 border-bottom bg-light bg-opacity-50">
                     <span class="d-block fw-bold text-dark"><?= htmlspecialchars($user_name) ?></span>
-                    <small class="text-muted"><?= htmlspecialchars($_SESSION['user_department'] ?? '') ?></small>
+                    <small class="text-muted d-block"><?= htmlspecialchars($_SESSION['user_department'] ?? '') ?></small>
+                    <div class="mt-1 d-md-none"><?= role_badge($user_role) ?></div>
                 </li>
                 <li>
                     <a class="dropdown-item py-2" href="<?= base_url('modules/auth/profile.php') ?>">

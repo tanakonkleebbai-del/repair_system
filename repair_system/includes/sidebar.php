@@ -1,6 +1,6 @@
 <?php
 /**
- * Sidebar Navigation Component
+ * Sidebar Navigation Component (Mobile-Responsive Drawer)
  */
 $user_role = $_SESSION['user_role'] ?? 'user';
 $current_page = basename($_SERVER['PHP_SELF']);
@@ -9,9 +9,15 @@ $current_dir = basename(dirname($_SERVER['PHP_SELF']));
 <aside class="sidebar">
     <div class="sidebar-header">
         <a href="<?= base_url('index.php') ?>" class="sidebar-logo">
-            <i class="fas fa-tools"></i>
-            <span>Repair System</span>
+            <img src="<?= base_url('assets/images/logo.png') ?>" alt="Logo" class="sidebar-logo-img">
+            <div class="sidebar-logo-text">
+                <span class="sidebar-logo-title">อบต.หนองแวง</span>
+                <span class="sidebar-logo-sub">ระบบแจ้งซ่อมออนไลน์</span>
+            </div>
         </a>
+        <button type="button" class="sidebar-close-btn" id="sidebarClose" aria-label="ปิดเมนู">
+            <i class="fas fa-times"></i>
+        </button>
     </div>
 
     <ul class="sidebar-menu">

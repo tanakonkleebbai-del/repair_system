@@ -8,19 +8,19 @@ if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 
-// Database Connection Configuration (Auto-detect Clever Cloud Env or Fallback to Clever Cloud DB)
-define('DB_HOST', getenv('MYSQL_ADDON_HOST') ?: 'bsfqfwl14xdehwchtizr-mysql.services.clever-cloud.com');
-define('DB_PORT', getenv('MYSQL_ADDON_PORT') ?: '3306');
-define('DB_NAME', getenv('MYSQL_ADDON_DB') ?: 'bsfqfwl14xdehwchtizr');
-define('DB_USER', getenv('MYSQL_ADDON_USER') ?: 'un5wy35bsce3mquj');
-define('DB_PASS', getenv('MYSQL_ADDON_PASSWORD') ?: 'J3MMx8AEfYIisFPmB40H');
+// Database Connection Constants
+define('DB_HOST', 'localhost');
+define('DB_PORT', '3306');
+define('DB_NAME', 'repair_system');
+define('DB_USER', 'root');
+define('DB_PASS', '');
 
 // System Settings
 define('SITE_NAME', 'ระบบแจ้งซ่อมและจัดการครุภัณฑ์');
 define('SITE_VERSION', '1.0.0');
 
 // Base URL calculation
-$protocol = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off' || (isset($_SERVER['SERVER_PORT']) && $_SERVER['SERVER_PORT'] == 443) || (isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] === 'https')) ? "https://" : "http://";
+$protocol = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off' || (isset($_SERVER['SERVER_PORT']) && $_SERVER['SERVER_PORT'] == 443)) ? "https://" : "http://";
 $host = $_SERVER['HTTP_HOST'] ?? 'localhost';
 $scriptName = $_SERVER['SCRIPT_NAME'] ?? '';
 $baseDir = preg_replace('@/modules/.*|/config/.*|/includes/.*|/uploads/.*|/[^/]+\.php$@i', '', $scriptName);
@@ -37,7 +37,7 @@ try {
     // Attempt PDO Connection to MySQL server
     $pdo = new PDO($dsn, DB_USER, DB_PASS, $options);
 } catch (PDOException $e) {
-    // If database does not exist, try to connect to server and create database automatically (Localhost only)
+    // If database does not exist, try to connect to server and create database automatically
     try {
         $serverDsn = "mysql:host=" . DB_HOST . ";port=" . DB_PORT . ";charset=utf8mb4";
         $serverPdo = new PDO($serverDsn, DB_USER, DB_PASS, [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);
@@ -56,7 +56,7 @@ try {
         die("<div style='font-family:sans-serif;padding:30px;background:#fff0f0;color:#c00;border:1px solid #f99;margin:40px auto;max-width:700px;border-radius:10px;'>"
             . "<h2>❌ ไม่สามารถเชื่อมต่อฐานข้อมูลได้</h2>"
             . "<p><strong>ข้อผิดพลาด:</strong> " . htmlspecialchars($ex->getMessage()) . "</p>"
-            . "<p>กรุณาตรวจสอบการตั้งค่าฐานข้อมูลใน config/db.php หรือ Clever Cloud Environment Variables</p>"
+            . "<p>กรุณาตรวจสอบว่าคุณได้เปิด MySQL ในโปรแกรม XAMPP หรือ Laragon เรียบร้อยแล้ว</p>"
             . "</div>");
     }
 }

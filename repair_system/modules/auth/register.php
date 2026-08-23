@@ -468,28 +468,58 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         /* Responsive Layout */
         @media (max-width: 900px) {
+            body {
+                padding: 1.25rem 0.75rem;
+            }
             .register-card {
                 flex-direction: column;
             }
             .brand-panel {
-                padding: 2.5rem 1.5rem;
+                padding: 2.25rem 1.25rem;
             }
             .features-list {
                 display: none;
             }
             .logo-wrapper {
-                width: 90px;
-                height: 90px;
-                margin-bottom: 1rem;
+                width: 84px;
+                height: 84px;
+                margin-bottom: 0.85rem;
             }
             .brand-title {
-                font-size: 1.35rem;
+                font-size: 1.3rem;
             }
             .form-panel {
-                padding: 2.25rem 1.5rem;
+                padding: 2rem 1.25rem;
             }
             .register-heading {
-                font-size: 1.45rem;
+                font-size: 1.4rem;
+            }
+            .form-control-custom, .form-select-custom {
+                font-size: 16px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            body {
+                padding: 0.75rem 0.5rem;
+            }
+            .brand-panel {
+                padding: 1.75rem 1rem;
+            }
+            .logo-wrapper {
+                width: 72px;
+                height: 72px;
+                margin-bottom: 0.75rem;
+            }
+            .brand-title {
+                font-size: 1.2rem;
+            }
+            .org-info {
+                font-size: 0.8rem;
+                margin-bottom: 1.5rem;
+            }
+            .form-panel {
+                padding: 1.5rem 1rem;
             }
         }
     </style>

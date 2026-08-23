@@ -1,6 +1,7 @@
 /**
  * Core Application JavaScript
  * Repair & Equipment Management System
+ * Enhanced Mobile Responsive Drawer & Interactivity
  */
 
 document.addEventListener('DOMContentLoaded', function () {
@@ -13,14 +14,64 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }, 5000);
 
-    // Sidebar Toggle for Mobile
+    // Sidebar Mobile Drawer Controller
     const sidebarToggle = document.getElementById('sidebarToggle');
+    const sidebarClose = document.getElementById('sidebarClose');
     const sidebar = document.querySelector('.sidebar');
-    if (sidebarToggle && sidebar) {
-        sidebarToggle.addEventListener('click', function () {
-            sidebar.classList.toggle('show');
+    const backdrop = document.getElementById('sidebarBackdrop');
+
+    function openSidebar() {
+        if (sidebar) sidebar.classList.add('show');
+        if (backdrop) backdrop.classList.add('show');
+        document.body.classList.add('sidebar-open');
+    }
+
+    function closeSidebar() {
+        if (sidebar) sidebar.classList.remove('show');
+        if (backdrop) backdrop.classList.remove('show');
+        document.body.classList.remove('sidebar-open');
+    }
+
+    if (sidebarToggle) {
+        sidebarToggle.addEventListener('click', function (e) {
+            e.preventDefault();
+            if (sidebar && sidebar.classList.contains('show')) {
+                closeSidebar();
+            } else {
+                openSidebar();
+            }
         });
     }
+
+    if (sidebarClose) {
+        sidebarClose.addEventListener('click', function (e) {
+            e.preventDefault();
+            closeSidebar();
+        });
+    }
+
+    if (backdrop) {
+        backdrop.addEventListener('click', function () {
+            closeSidebar();
+        });
+    }
+
+    // Auto-close sidebar on mobile when a nav link is tapped
+    const sidebarNavLinks = document.querySelectorAll('.sidebar-menu .nav-link-custom');
+    sidebarNavLinks.forEach(function (link) {
+        link.addEventListener('click', function () {
+            if (window.innerWidth <= 991.98) {
+                closeSidebar();
+            }
+        });
+    });
+
+    // Close on Escape key
+    document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape' && sidebar && sidebar.classList.contains('show')) {
+            closeSidebar();
+        }
+    });
 
     // Image Preview Helper (File input upload preview)
     const imageInputs = document.querySelectorAll('.image-preview-input');
@@ -33,7 +84,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 reader.onload = function (e) {
                     previewElem.src = e.target.result;
                     previewElem.classList.remove('d-none');
-                }
+                };
                 reader.readAsDataURL(this.files[0]);
             }
         });

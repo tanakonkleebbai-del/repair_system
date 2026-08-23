@@ -83,17 +83,17 @@ require_once __DIR__ . '/../../includes/sidebar.php';
                     <?= urgent_badge($repair['urgent_level']) ?>
                 </div>
             </div>
-            <div class="d-flex gap-2">
-                <a href="<?= base_url('modules/repair/print.php?id=' . $repair['id']) ?>" target="_blank" class="btn btn-outline-dark">
+            <div class="d-flex flex-wrap gap-2 w-100 w-sm-auto">
+                <a href="<?= base_url('modules/repair/print.php?id=' . $repair['id']) ?>" target="_blank" class="btn btn-outline-dark btn-sm">
                     <i class="fas fa-print me-1"></i> พิมพ์ใบแจ้งซ่อม
                 </a>
                 <?php if ($user_role === 'admin'): ?>
-                <button type="button" class="btn btn-outline-danger" onclick="confirmDelete('<?= base_url('modules/repair/delete.php?id=' . $repair['id']) ?>', 'ยืนยันการลบใบแจ้งซ่อม?', 'ต้องการลบใบแจ้งซ่อม <?= htmlspecialchars($repair['ticket_no']) ?> หรือไม่?')">
+                <button type="button" class="btn btn-outline-danger btn-sm" onclick="confirmDelete('<?= base_url('modules/repair/delete.php?id=' . $repair['id']) ?>', 'ยืนยันการลบใบแจ้งซ่อม?', 'ต้องการลบใบแจ้งซ่อม <?= htmlspecialchars($repair['ticket_no']) ?> หรือไม่?')">
                     <i class="fas fa-trash-alt me-1"></i> ลบใบแจ้งซ่อม
                 </button>
                 <?php endif; ?>
                 <?php if (in_array($user_role, ['admin', 'technician']) && $repair['status'] !== 'completed' && $repair['status'] !== 'cancelled'): ?>
-                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#updateStatusModal">
+                <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#updateStatusModal">
                     <i class="fas fa-edit me-1"></i> อัปเดตสถานะงาน / บันทึกผล
                 </button>
                 <?php endif; ?>

@@ -66,14 +66,14 @@ require_once __DIR__ . '/includes/sidebar.php';
 
     <div class="content-body">
         <!-- Welcome Banner -->
-        <div class="card-modern p-4 mb-4" style="background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%); color: #ffffff;">
-            <div class="d-flex flex-wrap align-items-center justify-content-between gap-3">
+        <div class="card-modern p-3 p-md-4 mb-4" style="background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%); color: #ffffff;">
+            <div class="d-flex flex-column flex-sm-row align-items-sm-center justify-content-between gap-3">
                 <div>
-                    <h3 class="fw-bold mb-1">สวัสดีคุณ <?= htmlspecialchars($user_fullname) ?> 👋</h3>
-                    <p class="text-white-50 mb-0">ยินดีต้อนรับสู่ <?= SITE_NAME ?> (สิทธิ์: <?= role_badge($user_role) ?>)</p>
+                    <h3 class="fw-bold mb-1 fs-4 fs-md-3">สวัสดีคุณ <?= htmlspecialchars($user_fullname) ?> 👋</h3>
+                    <p class="text-white-50 mb-0 small">ยินดีต้อนรับสู่ <?= SITE_NAME ?> (สิทธิ์: <?= role_badge($user_role) ?>)</p>
                 </div>
                 <div class="d-flex gap-2">
-                    <a href="<?= base_url('modules/repair/create.php') ?>" class="btn btn-primary px-4 py-2 fw-medium shadow">
+                    <a href="<?= base_url('modules/repair/create.php') ?>" class="btn btn-primary px-3 px-md-4 py-2 fw-medium shadow w-100 w-sm-auto">
                         <i class="fas fa-plus-circle me-1"></i> แจ้งซ่อมครุภัณฑ์ / ปัญหา
                     </a>
                 </div>
