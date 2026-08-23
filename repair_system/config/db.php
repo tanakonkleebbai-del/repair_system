@@ -8,12 +8,18 @@ if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 
-// Database Connection Constants
-define('DB_HOST', 'localhost');
-define('DB_PORT', '3306');
-define('DB_NAME', 'repair_system');
-define('DB_USER', 'root');
-define('DB_PASS', '');
+// Database Connection Constants (Auto support Clever Cloud & Localhost)
+$db_host = getenv('MYSQL_ADDON_HOST') ?: getenv('MYSQLHOST') ?: getenv('DB_HOST') ?: 'localhost';
+$db_port = getenv('MYSQL_ADDON_PORT') ?: getenv('MYSQLPORT') ?: getenv('DB_PORT') ?: '3306';
+$db_name = getenv('MYSQL_ADDON_DB') ?: getenv('MYSQLDATABASE') ?: getenv('DB_NAME') ?: 'repair_system';
+$db_user = getenv('MYSQL_ADDON_USER') ?: getenv('MYSQLUSER') ?: getenv('DB_USER') ?: 'root';
+$db_pass = getenv('MYSQL_ADDON_PASSWORD') !== false && getenv('MYSQL_ADDON_PASSWORD') !== null ? getenv('MYSQL_ADDON_PASSWORD') : (getenv('MYSQLPASSWORD') !== false && getenv('MYSQLPASSWORD') !== null ? getenv('MYSQLPASSWORD') : (getenv('DB_PASS') !== false && getenv('DB_PASS') !== null ? getenv('DB_PASS') : ''));
+
+define('DB_HOST', $db_host);
+define('DB_PORT', $db_port);
+define('DB_NAME', $db_name);
+define('DB_USER', $db_user);
+define('DB_PASS', $db_pass);
 
 // System Settings
 define('SITE_NAME', 'ระบบแจ้งซ่อมและจัดการครุภัณฑ์');
