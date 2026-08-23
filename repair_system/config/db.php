@@ -25,8 +25,14 @@ define('DB_PASS', $db_pass);
 define('SITE_NAME', 'ระบบแจ้งซ่อมและจัดการครุภัณฑ์');
 define('SITE_VERSION', '1.0.0');
 
-// Base URL calculation
-$protocol = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off' || (isset($_SERVER['SERVER_PORT']) && $_SERVER['SERVER_PORT'] == 443)) ? "https://" : "http://";
+// Base URL calculation (Supports Reverse Proxy SSL like Clever Cloud, Cloudflare, etc.)
+$isHttps = (
+    (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') ||
+    (isset($_SERVER['SERVER_PORT']) && $_SERVER['SERVER_PORT'] == 443) ||
+    (!empty($_SERVER['HTTP_X_FORWARDED_PROTO']) && strtolower($_SERVER['HTTP_X_FORWARDED_PROTO']) === 'https') ||
+    (!empty($_SERVER['HTTP_X_FORWARDED_SSL']) && strtolower($_SERVER['HTTP_X_FORWARDED_SSL']) === 'on')
+);
+$protocol = $isHttps ? "https://" : "http://";
 $host = $_SERVER['HTTP_HOST'] ?? 'localhost';
 $scriptName = $_SERVER['SCRIPT_NAME'] ?? '';
 $baseDir = preg_replace('@/modules/.*|/config/.*|/includes/.*|/uploads/.*|/[^/]+\.php$@i', '', $scriptName);
