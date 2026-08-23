@@ -39,7 +39,7 @@
 <!-- SweetAlert2 JS -->
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.10.5/dist/sweetalert2.all.min.js"></script>
 <!-- Custom App JS -->
-<script src="<?= base_url('assets/js/app.js') ?>"></script>
+<script src="<?= base_url('assets/js/app.js?v=' . time()) ?>"></script>
 
 <?php 
 $flashMessage = $flash ?? (function_exists('get_flash') ? get_flash() : null);
